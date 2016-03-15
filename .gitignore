@@ -54,3 +54,4 @@ App.config
 TestEmail.csproj
 packages.config
 TestEmail.csproj.user
+Migrations
