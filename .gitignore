@@ -50,5 +50,5 @@ Temporary Items
 bin
 obj
 Properties
-App
-TestEmail
+App.config
+TestEmail.csproj
