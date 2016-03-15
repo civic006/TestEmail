@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#VS project files and dirs
+bin
+obj
+Properties
+App
+TestEmail
