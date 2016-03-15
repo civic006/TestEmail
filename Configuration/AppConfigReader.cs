@@ -9,7 +9,6 @@ namespace TestEmailService.Configuration
         public string GetName()
         {
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.Name);
-            write
         }
 
         public string GetPassword()

@@ -22,6 +22,6 @@ namespace ConsoleApplication1.Utils
 
             ctx.Contacts.Add(cont);
             ctx.SaveChanges();
-        } }
+        } 
     }
 }

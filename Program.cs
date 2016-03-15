@@ -19,7 +19,7 @@ namespace ConsoleApplication1
             List<Contact> allContacts = db.Contacts.ToList();
 
             IConfig reader = new AppConfigReader();
-            IEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword());
+            IEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), "hi hi hi");
             foreach (Contact cont in allContacts)
             {
                 // Send our email
