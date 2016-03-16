@@ -8,23 +8,17 @@ namespace TestEmailService.EmailObject
     public class DataEmail : IEmail
     {
         private MailAddress _from;
-        private NetworkCredential _cred;
         private SmtpClient _client;
         private MailMessage _msg;
         private String _body;
         private String _subject;
 
-        public DataEmail(string fromEmail, string fromName, string pwd, string body)
+        public DataEmail(string fromEmail, string fromName, string pwd, SmtpClient client, string body)
         {
             this._from = new MailAddress(fromEmail, fromName);
-            this._cred = new NetworkCredential(fromEmail, pwd);
             this._subject = "Tester";
             this._body = body;
-            this._client = new SmtpClient("smtp.gmail.com", 587)
-            {
-                Credentials = this._cred,   // Send our account login details to the client.
-                EnableSsl = true      // Read below.
-            };
+            this._client = client;
         }
 
         //send email given strings of email and name
