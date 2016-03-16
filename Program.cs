@@ -17,6 +17,36 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            sendLocal();
+        }
+
+        public static void sendLocal()
+        {
+            EmailContext db = new EmailContext();
+            List<Contact> allContacts = db.Contacts.ToList();
+
+            IConfig reader = new AppConfigReader();
+            //NetworkCredential cred = new NetworkCredential(reader.GetUserName(), reader.GetPassword());
+
+
+            foreach (Contact cont in allContacts)
+            {
+                SmtpClient client = new SmtpClient();
+                //{
+                //    Credentials = cred,   // Send our account login details to the client.
+                //    EnableSsl = true
+                //};
+
+                DataEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client, "hi hi hi");
+                // Send our email
+                dataEmail.SendAsync(cont.Email, cont.Name);
+
+            }
+            Console.Read();
+        }
+
+        public static void sendGmail()
+        {
             EmailContext db = new EmailContext();
             List<Contact> allContacts = db.Contacts.ToList();
 
@@ -32,9 +62,9 @@ namespace ConsoleApplication1
                     EnableSsl = true
                 };
 
-                DataEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client,  "hi hi hi");
+                DataEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client, "hi hi hi");
                 // Send our email
-                dataEmail.SendAsync(cont.Email,cont.Name);    
+                dataEmail.SendAsync(cont.Email, cont.Name);
 
             }
             Console.Read();

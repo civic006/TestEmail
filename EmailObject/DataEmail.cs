@@ -83,11 +83,14 @@ namespace TestEmailService.EmailObject
             if (e.Error != null)
             {
                 Console.WriteLine("[{0}] {1}", token, e.Error.ToString());
+                
             }
             else
             {
                 Console.WriteLine("{0} :: Message sent.", token);
             }
+            _msg.Dispose();
+            _client.Dispose();
         }
 
     }
