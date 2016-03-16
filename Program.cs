@@ -24,8 +24,6 @@ namespace ConsoleApplication1
             NetworkCredential cred = new NetworkCredential(reader.GetUserName(), reader.GetPassword());
 
 
-            
-            
             foreach (Contact cont in allContacts)
             {
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
@@ -33,11 +31,13 @@ namespace ConsoleApplication1
                     Credentials = cred,   // Send our account login details to the client.
                     EnableSsl = true
                 };
-                IEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client,  "hi hi hi");
+
+                DataEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client,  "hi hi hi");
                 // Send our email
-                dataEmail.Send(cont.Email,cont.Name);    
+                dataEmail.SendAsync(cont.Email,cont.Name);    
 
             }
+            Console.Read();
         }
     }
 }
