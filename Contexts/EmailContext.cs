@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using TestEmailService.Models;
+using ConsoleApplication1.Models;
 
 namespace TestEmailService.Contexts
 {
@@ -14,6 +15,7 @@ namespace TestEmailService.Contexts
         {
         }
 
+        public DbSet<HospitalPerformance> HospitalPerformances { get; set; }
         public DbSet<Contact> Contacts { get; set; }
     }
 }
