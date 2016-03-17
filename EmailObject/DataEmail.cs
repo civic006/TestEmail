@@ -2,7 +2,10 @@
 using System.ComponentModel;
 using System.Net;
 using System.Net.Mail;
+using TestEmailService.Contexts;
 using TestEmailService.Interfaces;
+using System.Linq;
+using ConsoleApplication1.Models;
 
 namespace TestEmailService.EmailObject
 {
@@ -12,13 +15,11 @@ namespace TestEmailService.EmailObject
         private SmtpClient _client;
         private MailMessage _msg;
         private String _body;
-        private String _subject;
 
         public DataEmail(string fromEmail, string fromName, string pwd, SmtpClient client, string body)
         {
             this._from = new MailAddress(fromEmail, fromName);
-            this._subject = "Tester";
-            this._body = body;
+            this._body = "This month you had {0} accurate documentations out of {1} total documents.";
             this._client = client;
         }
 
@@ -35,7 +36,7 @@ namespace TestEmailService.EmailObject
             {
                 _msg = new MailMessage(_from, toAddress)
                 {
-                    Subject = this._subject,
+                    Subject = toAddress.DisplayName + "Testing",
                     Body = this._body
 
                 };
@@ -57,17 +58,32 @@ namespace TestEmailService.EmailObject
         //send email async given a mail service
         private void SendAsync(MailAddress toAddress)
         {
+            EmailContext ctx = new EmailContext();
+
+            var emailBodyData = from c in ctx.Contacts
+                                from d in c.HospitalPerfoamce
+                                where c.Email == "knguyen07@gmail.com"
+                                orderby d.Date descending
+                                select d;
+
+
+
+            HospitalPerformance data = emailBodyData.First();
             try
             {
                 _msg = new MailMessage(_from, toAddress)
                 {
-                    Subject = this._subject,
-                    Body = this._body
+                    Subject = toAddress.DisplayName + "Testing",
+                    Body = String.Format(this._body, data.AccurateDocs, data.TotalDocs)
 
                 };
                 Console.WriteLine("{0} :: Sending async", toAddress.DisplayName);
                 _client.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
                 _client.SendAsync(_msg, toAddress.DisplayName);
+            }
+            catch (SmtpFailedRecipientsException ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
             catch (Exception e)
             {

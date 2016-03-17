@@ -13,6 +13,7 @@ namespace ConsoleApplication1.Models
         public int AccurateDocs { get; set; }
         public int TotalDocs { get; set; }
         public int ContactId { get; set; }
+        public DateTime Date { get; set; }
         public virtual Contact Contact { get; set; }
     }
 }
