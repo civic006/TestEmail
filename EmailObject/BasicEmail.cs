@@ -38,7 +38,7 @@ namespace TestEmailService.EmailObject
             {
                 _msg = new MailMessage(_from, toAddress)
                 {
-                    Subject = toAddress.DisplayName + "Testing",
+                    Subject = toAddress.DisplayName + " Tester",
                     Body = this._body
 
                 };
@@ -75,7 +75,7 @@ namespace TestEmailService.EmailObject
             {
                 _msg = new MailMessage(_from, toAddress)
                 {
-                    Subject = toAddress.DisplayName + "Testing",
+                    Subject = toAddress.DisplayName +" " + DateTime.Now.ToString("MMMM dd, yyyy") +" Data Report",
                     //Body = String.Format(this._body, data.AccurateDocs, data.TotalDocs),
                     IsBodyHtml = true
             };
@@ -121,7 +121,7 @@ namespace TestEmailService.EmailObject
             string yourFile = "C:\\Users\\v-nathpa\\Documents\\seattlegen.png";
             LinkedResource inline = new LinkedResource(yourFile);
             inline.ContentId = Guid.NewGuid().ToString();
-            string htmlBody = String.Format(this._body, this._msg.To, data.AccurateDocs, data.TotalDocs, _msg.From,inline.ContentId);
+            string htmlBody = String.Format(this._body, this._msg.To.First().DisplayName.Trim('"'), data.AccurateDocs, data.TotalDocs, _msg.From.DisplayName.Trim('"'), inline.ContentId);
             AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
             alternateView.LinkedResources.Add(inline);
             return alternateView;

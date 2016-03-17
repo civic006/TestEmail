@@ -16,10 +16,10 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            sendGmail();
-        }
+        //static void Main(string[] args)
+        //{
+        //    sendGmail();
+        //}
 
         public static void sendLocal()
         {
