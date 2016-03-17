@@ -17,7 +17,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            sendLocal();
+            sendGmail();
         }
 
         public static void sendLocal()
