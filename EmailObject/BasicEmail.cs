@@ -6,20 +6,22 @@ using TestEmailService.Contexts;
 using TestEmailService.Interfaces;
 using System.Linq;
 using ConsoleApplication1.Models;
+using System.Net.Mime;
 
 namespace TestEmailService.EmailObject
 {
-    public class DataEmail
+    public class BasicEmail
     {
         private MailAddress _from;
         private SmtpClient _client;
         private MailMessage _msg;
-        private String _body;
+        private string _body;
 
-        public DataEmail(string fromEmail, string fromName, string pwd, SmtpClient client, string body)
+        public BasicEmail(string fromEmail, string fromName, string pwd, SmtpClient client)
         {
             this._from = new MailAddress(fromEmail, fromName);
-            this._body = "This month you had {0} accurate documentations out of {1} total documents.";
+            this._body = @"Dear {0},<br><br>This month you had {1} accurate documentations out of {2}
+                         total documents.<br><br>Thanks,<br><br>{3}<br><br><img src='cid:{4}'/>";
             this._client = client;
         }
 
@@ -74,9 +76,11 @@ namespace TestEmailService.EmailObject
                 _msg = new MailMessage(_from, toAddress)
                 {
                     Subject = toAddress.DisplayName + "Testing",
-                    Body = String.Format(this._body, data.AccurateDocs, data.TotalDocs)
+                    //Body = String.Format(this._body, data.AccurateDocs, data.TotalDocs),
+                    IsBodyHtml = true
+            };
+                _msg.AlternateViews.Add(getEmbeddedImage(data));
 
-                };
                 Console.WriteLine("{0} :: Sending async", toAddress.DisplayName);
                 _client.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
                 _client.SendAsync(_msg, toAddress.DisplayName);
@@ -109,7 +113,23 @@ namespace TestEmailService.EmailObject
             _client.Dispose();
         }
 
+                    //this._body = @"Dear {0},<br><br>This month you had {1} accurate documentations out of {2}
+                    //     total documents.<br><br>Thanks,<br><br>{3}<br><br><img src='cid:{4}'/>";
+
+        private AlternateView getEmbeddedImage(HospitalPerformance data)
+        {
+            string yourFile = "C:\\Users\\v-nathpa\\Documents\\seattlegen.png";
+            LinkedResource inline = new LinkedResource(yourFile);
+            inline.ContentId = Guid.NewGuid().ToString();
+            string htmlBody = String.Format(this._body, this._msg.To, data.AccurateDocs, data.TotalDocs, _msg.From,inline.ContentId);
+            AlternateView alternateView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
+            alternateView.LinkedResources.Add(inline);
+            return alternateView;
+        }
+
     }
+
+
 
 
 }

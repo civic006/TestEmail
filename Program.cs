@@ -38,7 +38,7 @@ namespace ConsoleApplication1
                 //    EnableSsl = true
                 //};
 
-                DataEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client, "hi hi hi");
+                BasicEmail dataEmail = new BasicEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client);
                 // Send our email
                 dataEmail.SendAsync(cont.Email, cont.Name);
 
@@ -63,7 +63,7 @@ namespace ConsoleApplication1
                     EnableSsl = true
                 };
 
-                DataEmail dataEmail = new DataEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client, "hi hi hi");
+                BasicEmail dataEmail = new BasicEmail(reader.GetUserName(), reader.GetName(), reader.GetPassword(), client);
                 // Send our email
                 dataEmail.SendAsync(cont.Email, cont.Name);
 
