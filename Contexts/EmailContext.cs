@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using TestEmailService.Models;
+using TestEmail.Models;
 using ConsoleApplication1.Models;
 
-namespace TestEmailService.Contexts
+namespace TestEmail.Contexts
 {
     public class EmailContext : DbContext
     {

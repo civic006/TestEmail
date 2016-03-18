@@ -6,16 +6,18 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using TestEmailService.Configuration;
-using TestEmailService.Contexts;
-using TestEmailService.EmailObject;
-using TestEmailService.Interfaces;
-using TestEmailService.Models;
+using TestEmail.Configuration;
+using TestEmail.Contexts;
+using TestEmail.EmailObject;
+using TestEmail.Interfaces;
+using TestEmail.Models;
 
 namespace ConsoleApplication1
 {
     class Program
     {
+        
+
         //static void Main(string[] args)
         //{
         //    sendGmail();

@@ -1,8 +1,8 @@
-﻿using TestEmailService.Interfaces;
+﻿using TestEmail.Interfaces;
 using System.Configuration;
-using TestEmailService.Settings;
+using TestEmail.Settings;
 
-namespace TestEmailService.Configuration
+namespace TestEmail.Configuration
 {
     public class AppConfigReader : IConfig
     {

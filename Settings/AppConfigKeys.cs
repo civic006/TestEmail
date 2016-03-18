@@ -1,4 +1,4 @@
-﻿namespace TestEmailService.Settings
+﻿namespace TestEmail.Settings
 {
     public class AppConfigKeys
     {

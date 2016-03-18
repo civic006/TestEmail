@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestEmailService.Models;
+using TestEmail.Models;
 
 namespace ConsoleApplication1.Models
 {

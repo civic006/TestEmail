@@ -5,7 +5,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestEmailService.Utils
+namespace TestEmail.Utils
 {
     //http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file
     public class Secure

@@ -2,13 +2,13 @@
 using System.ComponentModel;
 using System.Net;
 using System.Net.Mail;
-using TestEmailService.Contexts;
-using TestEmailService.Interfaces;
+using TestEmail.Contexts;
+using TestEmail.Interfaces;
 using System.Linq;
 using ConsoleApplication1.Models;
 using System.Net.Mime;
 
-namespace TestEmailService.EmailObject
+namespace TestEmail.EmailObject
 {
     public class BasicEmail
     {

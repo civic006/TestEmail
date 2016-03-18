@@ -1,4 +1,4 @@
-﻿namespace TestEmailService.Interfaces
+﻿namespace TestEmail.Interfaces
 {
     public interface IConfig
     {

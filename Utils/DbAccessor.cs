@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestEmailService.Contexts;
-using TestEmailService.Models;
+using TestEmail.Contexts;
+using TestEmail.Models;
 
 namespace ConsoleApplication1.Utils
 {
